@@ -640,7 +640,7 @@
         // AUTOMATIC DOWNLOAD LOGIC FOR PRESETS
         cardEl.querySelector('.card-action').addEventListener('click', () => {
           if (id === 'presets') {
-            if (card.url && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_1' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_2' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_3' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_4' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5') {
+            if (card.url && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_2' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_3' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_4' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5') {
               showToast(`Downloading: ${card.title}...`);
               window.open(card.url, '_blank');
             } else {
