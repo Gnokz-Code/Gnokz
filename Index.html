@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Liquid Glass | Mobile Hub</title>
+  <title>Liquid Glass | Centered Mobile Hub</title>
   <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2=family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,64 +26,64 @@
     body {
       min-height: 100vh;
       background: radial-gradient(circle at 50% 50%, #0d1527, var(--bg-dark));
-      position: relative;
-      overflow-x: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.75rem;
+      padding: 1rem;
+      overflow: hidden;
+      position: relative;
     }
 
-    /* Compact Background Orbs for Small Screens */
+    /* Background Orbs focused around center */
     .bg-orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
       z-index: 0;
-      opacity: 0.5;
+      opacity: 0.4;
       pointer-events: none;
     }
     .orb-1 {
-      width: 280px;
-      height: 280px;
+      width: 260px;
+      height: 260px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);
-      top: 5%;
-      left: -10%;
+      top: 20%;
+      left: 15%;
     }
     .orb-2 {
-      width: 300px;
-      height: 300px;
+      width: 280px;
+      height: 280px;
       background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent 70%);
-      bottom: 5%;
-      right: -10%;
+      bottom: 20%;
+      right: 15%;
     }
 
-    /* Compact Glass Panel */
+    /* Compact Glass Panel Base */
     .glass-panel {
       background: var(--panel-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
-                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.15);
       border-radius: 1.25rem;
       z-index: 10;
       width: 100%;
     }
 
-    /* LOGIN CARD (Mobile Tailored) */
+    /* LOGIN CARD (Strictly Snug & Centered) */
     .login-card {
-      max-width: 100%;
+      max-width: 350px;
       padding: 2rem 1.5rem;
       display: flex;
       flex-direction: column;
     }
 
     .login-card h2 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -99,7 +99,7 @@
 
     .input-group {
       position: relative;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       display: flex;
       align-items: center;
       background: rgba(255, 255, 255, 0.04);
@@ -122,7 +122,7 @@
     .input-group input {
       background: transparent;
       border: none;
-      padding: 0.75rem 0.75rem;
+      padding: 0.75rem;
       width: 100%;
       font-size: 0.9rem;
       color: #ffffff;
@@ -171,9 +171,9 @@
       color: rgba(255, 255, 255, 0.35);
     }
 
-    /* PRIVATE DASHBOARD (Max 768px for iPad/Phone No Dead Space) */
+    /* PRIVATE DASHBOARD (Centered App Canvas for Phone/iPad) */
     .private-hub {
-      max-width: 768px;
+      max-width: 420px;
       display: none;
       z-index: 10;
     }
@@ -187,7 +187,7 @@
     }
 
     .logo-gnoks h2 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #ffffff;
     }
@@ -206,7 +206,7 @@
     .logout-btn {
       background: rgba(239, 68, 68, 0.15);
       border: 1px solid rgba(239, 68, 68, 0.25);
-      padding: 0.35rem 0.75rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 0.4rem;
       color: #fca5a5;
       font-size: 0.75rem;
@@ -214,11 +214,11 @@
     }
 
     .gnoks-header {
-      padding: 1.25rem 1rem 0.5rem 1rem;
+      padding: 1.25rem 1rem 0.4rem 1rem;
     }
 
     .gnoks-header h1 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 800;
       color: #ffffff;
     }
@@ -229,52 +229,52 @@
     }
 
     .details-section h3 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.35);
     }
 
     .info-description {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.75);
       margin-top: 0.2rem;
     }
 
-    /* 2-Column Grid Perfect for Mobile & iPad Screen Widths */
+    /* Balanced 2-Column Grid with No Empty Gaps */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
+      gap: 0.65rem;
       padding: 1rem;
     }
 
     .category-tile {
       background: rgba(255, 255, 255, 0.02);
       border-radius: 0.75rem;
-      padding: 0.85rem;
+      padding: 0.8rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.5rem;
+      gap: 0.4rem;
       border: 1px solid rgba(255, 255, 255, 0.06);
       cursor: pointer;
     }
 
     .tile-icon {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       background: rgba(168, 85, 247, 0.12);
       border-radius: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #c084fc;
     }
 
     .tile-text {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #ffffff;
     }
 
@@ -298,17 +298,18 @@
       border-bottom-right-radius: 1.25rem;
     }
 
-    /* MOBILE & IPAD FIT MODAL */
+    /* ALWAYS CENTERED MODAL FOR MOBILE & TABLET */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(3, 7, 18, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(3, 7, 18, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 1000;
       display: flex;
-      align-items: flex-end; /* Bottom sheet style on mobile, centered on tablet via query */
+      align-items: center;
       justify-content: center;
+      padding: 1rem;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
@@ -320,15 +321,13 @@
     }
 
     .modal-container {
-      max-width: 100%;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      transform: translateY(100%);
+      max-width: 380px;
+      transform: scale(0.92);
       transition: transform 0.25s ease;
     }
 
     .modal-overlay.active .modal-container {
-      transform: translateY(0);
+      transform: scale(1);
     }
 
     .modal-header {
@@ -340,7 +339,7 @@
     }
 
     .modal-header h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #ffffff;
     }
 
@@ -348,23 +347,23 @@
       background: transparent;
       border: none;
       color: rgba(255, 255, 255, 0.4);
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
     }
 
     .cards-grid {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.5rem;
       padding: 1rem;
-      max-height: 60vh;
+      max-height: 50vh;
       overflow-y: auto;
     }
 
     .option-card {
       background: rgba(255, 255, 255, 0.02);
       border-radius: 0.6rem;
-      padding: 0.75rem;
+      padding: 0.7rem;
       border: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
@@ -375,77 +374,57 @@
     .card-main-info {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     .card-icon {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #c084fc;
     }
 
     .card-title {
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #ffffff;
     }
 
     .card-desc {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: rgba(255, 255, 255, 0.4);
     }
 
     .card-action {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.35rem 0.65rem;
+      padding: 0.3rem 0.6rem;
       border-radius: 0.4rem;
       color: #ffffff;
       font-weight: 500;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       cursor: pointer;
-      white-space: nowrap;
     }
 
-    /* TOAST ALERT ACCENT */
+    /* FLOATING TOAST UPGRADE */
     .toast-alert {
       position: fixed;
       bottom: 2rem;
       left: 50%;
-      transform: translate(-50%, 15px);
-      background: rgba(10, 15, 30, 0.85);
+      transform: translate(-50%, 10px);
+      background: rgba(10, 15, 30, 0.9);
       border: 1px solid var(--border-glow);
       padding: 0.5rem 1.25rem;
       border-radius: 1.5rem;
       color: #ffffff;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       z-index: 2000;
       opacity: 0;
-      transition: all 0.25s ease;
+      transition: all 0.22s ease;
       pointer-events: none;
+      white-space: nowrap;
     }
     .toast-alert.show {
       transform: translate(-50%, 0);
       opacity: 1;
-    }
-
-    /* Tablet / iPad Adjustments (Width 768px bounds) */
-    @media (min-width: 500px) {
-      .modal-overlay {
-        align-items: center;
-        padding: 1.5rem;
-      }
-      .modal-container {
-        max-width: 550px;
-        border-radius: 1.25rem;
-        transform: scale(0.95);
-      }
-      .modal-overlay.active .modal-container {
-        transform: scale(1);
-      }
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
   </style>
 </head>
@@ -454,7 +433,7 @@
 <div class="bg-orb orb-1"></div>
 <div class="bg-orb orb-2"></div>
 
-<!-- MAIN FORM LOGIN -->
+<!-- FORMS CORE PANEL -->
 <form id="loginForm" class="glass-panel login-card">
   <h2><i class="fas fa-fingerprint"></i> Liquid Access</h2>
   <div class="sub-message">Fill credentials to unlock private hub</div>
@@ -479,7 +458,7 @@
   <div class="demo-hint"><i class="fas fa-shield"></i> Vault Gateway</div>
 </form>
 
-<!-- MAIN PRIVATE DASHBOARD -->
+<!-- APP HUB CANVAS -->
 <div id="mainApp" class="glass-panel private-hub">
   <div class="glass-navbar">
     <div class="logo-gnoks"><h2><i class="fas fa-gem"></i> Gnoks · vault</h2></div>
@@ -505,7 +484,7 @@
   </div>
 </div>
 
-<!-- DATA SYSTEM MODAL -->
+<!-- COMPACT CENTURED MODAL -->
 <div id="modalOverlay" class="modal-overlay">
   <div class="glass-panel modal-container">
     <div class="modal-header">
@@ -541,7 +520,7 @@
         cards: [
           { title: 'Shake Effects', desc: 'Dynamic camera shake', actionLabel: 'GET', icon: 'fa-wave-square' },
           { title: 'Glitch Burst', desc: 'Retro transitions', actionLabel: 'GET', icon: 'fa-bolt' },
-          { title: 'Layer Effects', desc: 'Layer Control', actionLabel: 'GET', icon: 'fa-bolt-lightning' },
+          { title: 'Neon Pulse', desc: 'Vibrant intensity', actionLabel: 'GET', icon: 'fa-bolt-lightning' },
           { title: 'Cinematic Fade', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-film' },
           { title: 'Glass Morph', desc: 'Liquid motion', actionLabel: 'GET', icon: 'fa-gem' }
         ]
@@ -678,5 +657,3 @@
 </script>
 </body>
 </html>
-
-```
