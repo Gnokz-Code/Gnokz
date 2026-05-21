@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Gnokz Info</title>
-  <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2=family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -433,9 +432,8 @@
 <div class="bg-orb orb-1"></div>
 <div class="bg-orb orb-2"></div>
 
-<!-- FORMS CORE PANEL -->
 <form id="loginForm" class="glass-panel login-card">
-  <h2><i class="fas fa-fingerprint"></i> Liquid Access</h2>
+  <h2><i class="fas fa-fingerprint"></i> Fill out to access</h2>
   <div class="sub-message">Fill credentials to unlock private hub</div>
   
   <div class="input-group">
@@ -458,7 +456,6 @@
   <div class="demo-hint"><i class="fas fa-shield"></i> Vault Gateway</div>
 </form>
 
-<!-- APP HUB CANVAS -->
 <div id="mainApp" class="glass-panel private-hub">
   <div class="glass-navbar">
     <div class="logo-gnoks"><h2><i class="fas fa-gem"></i> Gnoks · Informations </h2></div>
@@ -484,7 +481,6 @@
   </div>
 </div>
 
-<!-- COMPACT CENTURED MODAL -->
 <div id="modalOverlay" class="modal-overlay">
   <div class="glass-panel modal-container">
     <div class="modal-header">
@@ -514,17 +510,17 @@
     const closeModalBtn = document.getElementById('closeModalBtn');
     const toastAlert = document.getElementById('toastAlert');
 
-    // MGA KATEGORYA (Dito mo papalitan ang 'ILAGAY_ANG_DIRECT_LINK_DITO')
-    // Tip: Gamitin ang format na https://drive.google.com/uc?export=download&id=YOUR_FILE_ID para mag-auto download agad ang XML file!
+
+
     const categoriesData = {
       presets: {
-        name: 'PRESETS', icon: 'fa-sliders',
+        name: 'Alight Motion Presets', icon: 'fa-sliders',
         cards: [
-          { title: 'Shake Effects', desc: 'Dynamic camera shake', actionLabel: 'GET', icon: 'fa-wave-square', url: 'https://drive.google.com/file/d/114g6hOE_spF_2PyJ6QqZQUURuloAYa1j/view?usp=drivesdk' },
-          { title: 'Glitch Burst', desc: 'Retro transitions', actionLabel: 'GET', icon: 'fa-bolt', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_2' },
-          { title: 'Neon Pulse', desc: 'Vibrant intensity', actionLabel: 'GET', icon: 'fa-bolt-lightning', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_3' },
-          { title: 'Cinematic Fade', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-film', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_4' },
-          { title: 'Glass Morph', desc: 'Liquid motion', actionLabel: 'GET', icon: 'fa-gem', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_5' }
+          { title: 'All Layer Effects', desc: '9:16 • Jedug Jedug', actionLabel: 'GET', icon: 'fa-layer-group', url: 'https://drive.google.com/file/d/1SiXYq9_Ep_q1SaGDE3YJLen-ejYUuEgr/view?usp=drivesdk' },
+          { title: 'Text Animation', desc: 'Subtitle • Speaking Scenes', actionLabel: 'GET', icon: 'fa-font', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_2' },
+          { title: 'Outro', desc: 'End of edits', actionLabel: 'GET', icon: 'fa-clapperboard', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_3' },
+          { title: 'Transation', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-shuffle', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_4' },
+          { title: 'AE like', desc: 'Premium Vibe', actionLabel: 'GET', icon: 'fa-wand-magic-sparkles', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_5' }
         ]
       },
       links: {
@@ -640,7 +636,7 @@
         // AUTOMATIC DOWNLOAD LOGIC FOR PRESETS
         cardEl.querySelector('.card-action').addEventListener('click', () => {
           if (id === 'presets') {
-            if (card.url && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_2' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_3' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_4' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5') {
+            if (card.url && !card.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
               showToast(`Downloading: ${card.title}...`);
               window.open(card.url, '_blank');
             } else {
