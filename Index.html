@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Liquid Glass | Gnoks Interactive Hub</title>
-  <!-- Google Fonts + Font Awesome 6 (no emoji, pure icons) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Liquid Glass | Mobile Hub</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2=family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --bg-dark: #050a15;
+      --panel-bg: rgba(10, 18, 36, 0.6);
+      --border-glow: rgba(168, 85, 247, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,784 +25,658 @@
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at 20% 30%, #0b1120, #030617);
+      background: radial-gradient(circle at 50% 50%, #0d1527, var(--bg-dark));
       position: relative;
       overflow-x: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0.75rem;
     }
 
-    /* animated liquid glass background orbs */
-    body::before {
-      content: "";
+    /* Compact Background Orbs for Small Screens */
+    .bg-orb {
       position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(80, 150, 255, 0.3), rgba(0, 255, 255, 0));
       border-radius: 50%;
-      top: -150px;
-      left: -180px;
-      filter: blur(90px);
-      animation: liquidDrift 14s infinite alternate ease-in-out;
+      filter: blur(80px);
       z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);
+      top: 5%;
+      left: -10%;
+    }
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent 70%);
+      bottom: 5%;
+      right: -10%;
     }
 
-    body::after {
-      content: "";
-      position: absolute;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(210, 100, 255, 0.3), rgba(255, 80, 180, 0));
-      border-radius: 50%;
-      bottom: -150px;
-      right: -200px;
-      filter: blur(100px);
-      animation: liquidDrift 18s infinite alternate-reverse;
-      z-index: 0;
-    }
-
-    @keyframes liquidDrift {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-      100% { transform: translate(50px, 40px) scale(1.25); opacity: 0.8; }
-    }
-
-    /* glass core */
+    /* Compact Glass Panel */
     .glass-panel {
-      background: rgba(12, 20, 35, 0.45);
+      background: var(--panel-bg);
       backdrop-filter: blur(16px);
-      border-radius: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.08) inset;
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border-radius: 1.25rem;
+      z-index: 10;
+      width: 100%;
     }
 
-    /* LOGIN CARD */
+    /* LOGIN CARD (Mobile Tailored) */
     .login-card {
-      width: 100%;
-      max-width: 460px;
-      padding: 2.4rem 2rem;
-      animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      max-width: 100%;
+      padding: 2rem 1.5rem;
       display: flex;
       flex-direction: column;
-      z-index: 10;
-    }
-
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(30px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .login-card h2 {
-      font-size: 1.9rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      background: linear-gradient(125deg, #FFFFFF, #b7c9ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.5rem;
     }
 
     .sub-message {
-      color: rgba(210, 225, 255, 0.7);
-      font-size: 0.85rem;
-      margin: 0.5rem 0 1.8rem 0;
-      border-left: 3px solid #8f6eff;
-      padding-left: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      border-left: 2px solid #a855f7;
+      padding-left: 8px;
     }
 
     .input-group {
       position: relative;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s;
     }
 
     .input-group:focus-within {
-      border-color: #b27eff;
-      background: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 0 14px rgba(140, 100, 255, 0.3);
+      border-color: #a855f7;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
     }
 
     .input-group i:first-child {
-      padding-left: 18px;
-      color: #bacdff;
+      padding-left: 1rem;
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .input-group input {
       background: transparent;
       border: none;
-      padding: 1rem 0.8rem;
+      padding: 0.75rem 0.75rem;
       width: 100%;
-      font-size: 1rem;
-      color: white;
+      font-size: 0.9rem;
+      color: #ffffff;
       outline: none;
-      font-weight: 500;
     }
 
     .toggle-password {
       position: absolute;
-      right: 18px;
+      right: 1rem;
       cursor: pointer;
-      color: rgba(220, 230, 255, 0.8);
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .continue-btn {
       width: 100%;
-      background: linear-gradient(95deg, #5f4bdb, #a06eff, #5f4bdb);
-      background-size: 200% auto;
+      background: var(--primary-gradient);
       border: none;
-      padding: 0.9rem;
-      font-size: 1rem;
+      padding: 0.8rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      border-radius: 3rem;
-      color: white;
+      border-radius: 0.6rem;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 0.5rem;
       cursor: pointer;
-      margin-top: 0.5rem;
-      box-shadow: 0 8px 18px rgba(90, 60, 210, 0.4);
-      transition: 0.25s;
-    }
-
-    .continue-btn:hover {
-      transform: scale(1.02);
-      background-position: right center;
+      margin-top: 0.25rem;
     }
 
     .error-message {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      background: rgba(255, 80, 80, 0.15);
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.2);
       padding: 0.6rem;
-      border-radius: 2rem;
+      border-radius: 0.5rem;
       text-align: center;
-      color: #ffbcaf;
+      color: #fca5a5;
     }
 
     .demo-hint {
-      margin-top: 1.5rem;
+      margin-top: 1.25rem;
       text-align: center;
       font-size: 0.7rem;
-      color: rgba(200, 215, 255, 0.55);
-      background: rgba(0, 0, 0, 0.2);
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
+      color: rgba(255, 255, 255, 0.35);
     }
 
-    /* MAIN HUB */
+    /* PRIVATE DASHBOARD (Max 768px for iPad/Phone No Dead Space) */
     .private-hub {
-      width: 100%;
-      max-width: 1280px;
-      margin: 1.5rem;
+      max-width: 768px;
       display: none;
       z-index: 10;
-      position: relative;
-      animation: fadeInMain 0.7s ease;
-    }
-
-    @keyframes fadeInMain {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
     }
 
     .glass-navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      padding: 0.8rem 1.8rem;
-      margin-bottom: 2rem;
-      background: rgba(10, 20, 35, 0.5);
-      backdrop-filter: blur(18px);
-      border-radius: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .logo-gnoks h2 {
-      font-size: 1.7rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      background: linear-gradient(130deg, #F2F6FF, #cbafff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #ffffff;
     }
 
     .user-area {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      background: rgba(255,255,255,0.05);
-      padding: 0.3rem 1rem 0.3rem 1.5rem;
-      border-radius: 3rem;
+      gap: 0.75rem;
     }
 
     .user-name {
-      color: white;
-      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
     }
 
     .logout-btn {
-      background: rgba(255, 90, 110, 0.65);
-      border: none;
-      padding: 0.45rem 1.2rem;
-      border-radius: 2rem;
-      color: white;
-      font-weight: 500;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.4rem;
+      color: #fca5a5;
+      font-size: 0.75rem;
       cursor: pointer;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      transition: 0.2s;
-    }
-
-    .logout-btn:hover {
-      background: rgba(255, 60, 85, 0.9);
-      transform: scale(0.96);
-    }
-
-    /* main info container */
-    .info-glass-container {
-      background: rgba(15, 25, 45, 0.45);
-      backdrop-filter: blur(20px);
-      border-radius: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
     }
 
     .gnoks-header {
-      padding: 2rem 2rem 0.5rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 1.25rem 1rem 0.5rem 1rem;
     }
 
     .gnoks-header h1 {
-      font-size: 4rem;
+      font-size: 1.8rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF, #d4bcff, #a68eff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -1.5px;
+      color: #ffffff;
     }
 
     .details-section {
-      padding: 1.2rem 2rem 0.5rem 2rem;
+      padding: 0 1rem 1rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .details-section h3 {
-      font-size: 1.7rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, #e2e9ff, #b294ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
     }
 
     .info-description {
-      font-size: 1rem;
-      color: #cdd9ff;
-      margin: 0.5rem 0 1rem 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 0.2rem;
     }
 
-    /* category grid (clickable tiles) */
+    /* 2-Column Grid Perfect for Mobile & iPad Screen Widths */
     .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.3rem;
-      padding: 1rem 2rem 1.5rem 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      padding: 1rem;
     }
 
     .category-tile {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 1.8rem;
-      padding: 1.2rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 0.75rem;
+      padding: 0.85rem;
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       cursor: pointer;
     }
 
-    .category-tile:hover {
-      transform: translateY(-4px);
-      background: rgba(80, 90, 130, 0.45);
-      border-color: rgba(170, 140, 250, 0.7);
-      box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.3);
-    }
-
     .tile-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(145deg, rgba(110, 80, 210, 0.5), rgba(70, 50, 150, 0.3));
-      border-radius: 1.5rem;
+      width: 32px;
+      height: 32px;
+      background: rgba(168, 85, 247, 0.12);
+      border-radius: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: #cfbefa;
+      font-size: 1rem;
+      color: #c084fc;
     }
 
     .tile-text {
       font-weight: 600;
-      font-size: 1.2rem;
-      color: white;
+      font-size: 0.9rem;
+      color: #ffffff;
     }
 
     .tile-sub {
       font-size: 0.7rem;
-      color: #b7c4f0;
-      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.35);
     }
 
     .disabled-tile {
-      opacity: 0.6;
+      opacity: 0.35;
       cursor: not-allowed;
-    }
-    .disabled-tile:hover {
-      transform: none;
-      background: rgba(255, 255, 255, 0.05);
     }
 
     .private-footer {
-      margin: 0.5rem 2rem 2rem 2rem;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
+      padding: 0.85rem;
+      background: rgba(0, 0, 0, 0.15);
       text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.35);
+      border-bottom-left-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
     }
 
-    .private-footer p {
-      color: #ffe6b3;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* MODAL (for 5 cards) */
+    /* MOBILE & IPAD FIT MODAL */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 10, 20, 0.7);
-      backdrop-filter: blur(10px);
+      inset: 0;
+      background: rgba(3, 7, 18, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 1000;
       display: flex;
-      align-items: center;
+      align-items: flex-end; /* Bottom sheet style on mobile, centered on tablet via query */
       justify-content: center;
-      visibility: hidden;
       opacity: 0;
-      transition: visibility 0.2s, opacity 0.2s;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
     }
 
     .modal-overlay.active {
-      visibility: visible;
       opacity: 1;
+      pointer-events: auto;
     }
 
     .modal-container {
-      background: rgba(20, 30, 55, 0.7);
-      backdrop-filter: blur(24px);
-      border-radius: 2.5rem;
-      width: 90%;
-      max-width: 900px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 25px 50px -12px black;
-      animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
-      overflow: hidden;
+      max-width: 100%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      transform: translateY(100%);
+      transition: transform 0.25s ease;
     }
 
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .modal-overlay.active .modal-container {
+      transform: translateY(0);
     }
 
     .modal-header {
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .modal-header h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      font-size: 1.1rem;
+      color: #ffffff;
     }
 
     .close-modal {
-      background: rgba(255,70,70,0.3);
+      background: transparent;
       border: none;
-      width: 38px;
-      height: 38px;
-      border-radius: 40px;
-      color: white;
-      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .close-modal:hover {
-      background: rgba(255,70,70,0.8);
-      transform: rotate(90deg);
     }
 
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.3rem;
-      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 1rem;
+      max-height: 60vh;
+      overflow-y: auto;
     }
 
     .option-card {
-      background: rgba(10, 20, 35, 0.6);
-      backdrop-filter: blur(12px);
-      border-radius: 1.6rem;
-      padding: 1.2rem;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: 0.2s;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 0.6rem;
+      padding: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
 
-    .option-card:hover {
-      transform: translateY(-5px);
-      background: rgba(70, 80, 130, 0.6);
-      border-color: #b594ff;
+    .card-main-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .card-icon {
-      font-size: 2rem;
-      color: #cfb5ff;
-      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      color: #c084fc;
     }
 
     .card-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: white;
-      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #ffffff;
     }
 
     .card-desc {
       font-size: 0.75rem;
-      color: #bcc9f0;
-      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .card-action {
-      background: linear-gradient(95deg, #4a3bb5, #8a6eff);
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      color: white;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.4rem;
+      color: #ffffff;
       font-weight: 500;
       font-size: 0.75rem;
       cursor: pointer;
-      transition: 0.2s;
+      white-space: nowrap;
     }
 
-    .card-action:hover {
-      background: #6c51e0;
-      transform: scale(0.97);
+    /* TOAST ALERT ACCENT */
+    .toast-alert {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translate(-50%, 15px);
+      background: rgba(10, 15, 30, 0.85);
+      border: 1px solid var(--border-glow);
+      padding: 0.5rem 1.25rem;
+      border-radius: 1.5rem;
+      color: #ffffff;
+      font-size: 0.8rem;
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.25s ease;
+      pointer-events: none;
+    }
+    .toast-alert.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
     }
 
-    @media (max-width: 680px) {
-      .private-hub { margin: 0.8rem; }
-      .gnoks-header h1 { font-size: 2.6rem; }
-      .category-grid { padding: 1rem; gap: 0.9rem; }
-      .modal-container { width: 95%; }
-      .cards-grid { padding: 1rem; }
+    /* Tablet / iPad Adjustments (Width 768px bounds) */
+    @media (min-width: 500px) {
+      .modal-overlay {
+        align-items: center;
+        padding: 1.5rem;
+      }
+      .modal-container {
+        max-width: 550px;
+        border-radius: 1.25rem;
+        transform: scale(0.95);
+      }
+      .modal-overlay.active .modal-container {
+        transform: scale(1);
+      }
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- LOGIN GATEWAY -->
-<div id="loginContainer" class="glass-panel login-card">
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<!-- MAIN FORM LOGIN -->
+<form id="loginForm" class="glass-panel login-card">
   <h2><i class="fas fa-fingerprint"></i> Liquid Access</h2>
   <div class="sub-message">Fill credentials to unlock private hub</div>
+  
   <div class="input-group">
     <i class="fas fa-user-astronaut"></i>
-    <input type="text" id="usernameInput" placeholder="Username" autocomplete="off">
+    <input type="text" id="usernameInput" placeholder="Username" required autocomplete="username">
   </div>
+  
   <div class="input-group">
     <i class="fas fa-lock"></i>
-    <input type="password" id="passwordInput" placeholder="Password">
+    <input type="password" id="passwordInput" placeholder="Password" required autocomplete="current-password">
     <i class="fas fa-eye-slash toggle-password" id="togglePassIcon"></i>
   </div>
-  <button class="continue-btn" id="continueBtn"><span>Unlock private web</span> <i class="fas fa-arrow-right-to-bracket"></i></button>
+  
+  <button type="submit" class="continue-btn">
+    <span>Unlock private web</span> 
+    <i class="fas fa-arrow-right-to-bracket"></i>
+  </button>
+  
   <div id="errorMsg" class="error-message" style="display: none;"></div>
-  <div class="demo-hint"><i class="fas fa-shield-haltered"></i> owner only: Gnokz / spc8808</div>
-</div>
+  <div class="demo-hint"><i class="fas fa-shield"></i> Vault Gateway</div>
+</form>
 
-<!-- MAIN PRIVATE HUB -->
-<div id="mainApp" class="private-hub">
+<!-- MAIN PRIVATE DASHBOARD -->
+<div id="mainApp" class="glass-panel private-hub">
   <div class="glass-navbar">
     <div class="logo-gnoks"><h2><i class="fas fa-gem"></i> Gnoks · vault</h2></div>
-    <div class="user-area"><span class="user-name"><i class="fas fa-user-check"></i> <span id="displayUsername">Gnokz</span></span>
-    <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Lock exit</button></div>
+    <div class="user-area">
+      <span class="user-name"><span id="displayUsername">Gnokz</span></span>
+      <button type="button" class="logout-btn" id="logoutBtn">Lock</button>
+    </div>
   </div>
 
-  <div class="info-glass-container">
-    <div class="gnoks-header"><h1>Gnoks</h1></div>
-    <div class="details-section">
-      <h3>DETAILS</h3>
-      <div class="info-description"><i class="fas fa-database"></i> All important info ko ay nandito</div>
-    </div>
+  <div class="gnoks-header">
+    <h1>Gnoks</h1>
+  </div>
+  
+  <div class="details-section">
+    <h3>Details</h3>
+    <div class="info-description"><i class="fas fa-database"></i> All important info ko ay nandito</div>
+  </div>
 
-    <!-- interactive categories: Presets, Links, Prompts, Other Web, Accounts (disabled) -->
-    <div class="category-grid" id="categoryGrid">
-      <!-- dynamic from js but static for clarity -->
-    </div>
-    <div class="private-footer"><p><i class="fas fa-crown"></i> Private Web - Owner access only <i class="fas fa-shield-heart"></i></p></div>
+  <div class="category-grid" id="categoryGrid"></div>
+  
+  <div class="private-footer">
+    <p><i class="fas fa-crown"></i> Private Web - Owner access only</p>
   </div>
 </div>
 
-<!-- MODAL STRUCTURE (dynamic) -->
+<!-- DATA SYSTEM MODAL -->
 <div id="modalOverlay" class="modal-overlay">
-  <div class="modal-container">
+  <div class="glass-panel modal-container">
     <div class="modal-header">
-      <h3 id="modalTitle"><i class="fas fa-layer-group"></i> Category</h3>
-      <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+      <h3 id="modalTitle">Category</h3>
+      <button type="button" class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
     </div>
-    <div id="modalCardsContainer" class="cards-grid">
-      <!-- 5 cards injected -->
-    </div>
+    <div id="modalCardsContainer" class="cards-grid"></div>
   </div>
 </div>
+
+<div id="toastAlert" class="toast-alert"></div>
 
 <script>
   (function(){
-    // DOM elements login
-    const loginContainer = document.getElementById('loginContainer');
+    const loginForm = document.getElementById('loginForm');
     const mainApp = document.getElementById('mainApp');
     const usernameField = document.getElementById('usernameInput');
     const passwordField = document.getElementById('passwordInput');
-    const continueBtn = document.getElementById('continueBtn');
     const errorMsgDiv = document.getElementById('errorMsg');
     const togglePass = document.getElementById('togglePassIcon');
     const logoutBtn = document.getElementById('logoutBtn');
     const displayUsernameSpan = document.getElementById('displayUsername');
 
-    // modal elements
     const modalOverlay = document.getElementById('modalOverlay');
     const modalTitle = document.getElementById('modalTitle');
     const modalCardsContainer = document.getElementById('modalCardsContainer');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    const toastAlert = document.getElementById('toastAlert');
 
-    // helpers
-    function setError(text){
-      errorMsgDiv.innerHTML = `<i class="fas fa-circle-exclamation"></i> ${text}`;
-      errorMsgDiv.style.display = 'block';
-      setTimeout(()=>{ if(errorMsgDiv.style.display === 'block') errorMsgDiv.style.opacity='0.9'; },3000);
-    }
-    function clearError(){ errorMsgDiv.style.display='none'; errorMsgDiv.innerHTML=''; }
-
-    // credential check
-    function attemptLogin(){
-      const user = usernameField.value.trim();
-      const pass = passwordField.value;
-      if(user === 'Gnokz' && pass === 'spc8808'){
-        clearError();
-        displayUsernameSpan.innerText = user;
-        loginContainer.style.display = 'none';
-        mainApp.style.display = 'block';
-        usernameField.value = '';
-        passwordField.value = '';
-      } else {
-        let err = '';
-        if(user === '') err = 'Username required';
-        else if(pass === '') err = 'Password required';
-        else err = 'Access denied: only Gnokz may enter';
-        setError(err);
-        loginContainer.style.transform = 'translateX(4px)';
-        setTimeout(()=>{ loginContainer.style.transform = ''; },120);
-      }
-    }
-
-    function logout(){
-      mainApp.style.display = 'none';
-      loginContainer.style.display = 'flex';
-      usernameField.value = '';
-      passwordField.value = '';
-      clearError();
-      loginContainer.style.animation = 'none';
-      setTimeout(()=>{ loginContainer.style.animation = 'fadeSlideUp 0.5s ease'; },10);
-    }
-
-    // ----- Category Data (5 cards each) -----
     const categoriesData = {
       presets: {
-        name: 'PRESETS',
-        icon: 'fa-sliders-h',
+        name: 'PRESETS', icon: 'fa-sliders',
         cards: [
-          { title: 'Shake Effects', desc: 'Dynamic camera shake presets', actionLabel: 'GET PRESET', icon: 'fa-waveform' },
-          { title: 'Glitch Burst', desc: 'Retro glitch transitions', actionLabel: 'GET PRESET', icon: 'fa-bolt' },
-          { title: 'Neon Pulse', desc: 'Vibrant neon intensity', actionLabel: 'GET PRESET', icon: 'fa-sun' },
-          { title: 'Cinematic Fade', desc: 'Smooth fade transitions', actionLabel: 'GET PRESET', icon: 'fa-film' },
-          { title: 'Glass Morph', desc: 'Liquid glass motion', actionLabel: 'GET PRESET', icon: 'fa-gem' }
+          { title: 'Shake Effects', desc: 'Dynamic camera shake', actionLabel: 'GET', icon: 'fa-wave-square' },
+          { title: 'Glitch Burst', desc: 'Retro transitions', actionLabel: 'GET', icon: 'fa-bolt' },
+          { title: 'Neon Pulse', desc: 'Vibrant intensity', actionLabel: 'GET', icon: 'fa-bolt-lightning' },
+          { title: 'Cinematic Fade', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-film' },
+          { title: 'Glass Morph', desc: 'Liquid motion', actionLabel: 'GET', icon: 'fa-gem' }
         ]
       },
       links: {
-        name: 'LINKS',
-        icon: 'fa-link',
+        name: 'LINKS', icon: 'fa-link',
         cards: [
-          { title: 'Design Library', desc: 'curated UI resources', actionLabel: 'Visit', icon: 'fa-palette' },
-          { title: 'Motion Lab', desc: 'After effects templates', actionLabel: 'Visit', icon: 'fa-play' },
-          { title: 'Code Snippets', desc: 'React & GSAP utils', actionLabel: 'Copy', icon: 'fa-code' },
-          { title: 'Font Archive', desc: 'typography insights', actionLabel: 'Explore', icon: 'fa-font' },
-          { title: '3D Assets', desc: 'glassmorphic 3d kits', actionLabel: 'Browse', icon: 'fa-cube' }
+          { title: 'Design Lib', desc: 'Curated UI tools', actionLabel: 'Go', icon: 'fa-palette' },
+          { title: 'Motion Lab', desc: 'AE templates', actionLabel: 'Go', icon: 'fa-play' },
+          { title: 'Code Pack', desc: 'GSAP utils', actionLabel: 'Copy', icon: 'fa-code' },
+          { title: 'Fonts', desc: 'Typography', actionLabel: 'View', icon: 'fa-font' },
+          { title: '3D Assets', desc: 'Glass 3d kits', actionLabel: 'Get', icon: 'fa-cube' }
         ]
       },
       prompts: {
-        name: 'PROMPTS',
-        icon: 'fa-comment-dots',
+        name: 'PROMPTS', icon: 'fa-comment-dots',
         cards: [
-          { title: 'AI Storyteller', desc: 'generate narrative arcs', actionLabel: 'Use prompt', icon: 'fa-robot' },
-          { title: 'Code Genius', desc: 'optimized code generation', actionLabel: 'Use prompt', icon: 'fa-terminal' },
-          { title: 'Design Critic', desc: 'UI/UX review prompts', actionLabel: 'Use prompt', icon: 'fa-pen-ruler' },
-          { title: 'Copywriter Pro', desc: 'marketing copy mastery', actionLabel: 'Use prompt', icon: 'fa-feather' },
-          { title: 'Data Analyst', desc: 'insight extraction prompts', actionLabel: 'Use prompt', icon: 'fa-chart-line' }
+          { title: 'Storyteller', desc: 'Narrative arcs', actionLabel: 'Use', icon: 'fa-robot' },
+          { title: 'Code Genius', desc: 'Clean script', actionLabel: 'Use', icon: 'fa-terminal' },
+          { title: 'UI Critic', desc: 'UX review', actionLabel: 'Use', icon: 'fa-pen-ruler' },
+          { title: 'Copy Pro', desc: 'Marketing text', actionLabel: 'Use', icon: 'fa-feather' },
+          { title: 'Analyst', desc: 'Data extraction', actionLabel: 'Use', icon: 'fa-chart-line' }
         ]
       },
       otherweb: {
-        name: 'OTHER WEB',
-        icon: 'fa-globe',
+        name: 'OTHER WEB', icon: 'fa-globe',
         cards: [
-          { title: 'Vault Resources', desc: 'private cloud storage', actionLabel: 'Access', icon: 'fa-cloud' },
-          { title: 'Creator Hub', desc: 'portfolio showcase', actionLabel: 'Visit', icon: 'fa-star' },
-          { title: 'Glass UI Kit', desc: 'download components', actionLabel: 'Get Kit', icon: 'fa-paintbrush' },
-          { title: 'Analytics Board', desc: 'track performance', actionLabel: 'View', icon: 'fa-chart-simple' },
-          { title: 'Inspiration Feed', desc: 'daily design inspo', actionLabel: 'Explore', icon: 'fa-lightbulb' }
+          { title: 'Cloud Vault', desc: 'Secure drive', actionLabel: 'Open', icon: 'fa-cloud' },
+          { title: 'Creator Hub', desc: 'Portfolio site', actionLabel: 'Open', icon: 'fa-star' },
+          { title: 'UI Kit', desc: 'Glass layout components', actionLabel: 'Get', icon: 'fa-paintbrush' },
+          { title: 'Analytics', desc: 'Performance logs', actionLabel: 'View', icon: 'fa-chart-simple' },
+          { title: 'Inspiration', desc: 'Daily feeds', actionLabel: 'Open', icon: 'fa-lightbulb' }
         ]
       }
     };
 
-    // Build category tiles in grid
-    const categoryGrid = document.getElementById('categoryGrid');
+    function showToast(msg) {
+      toastAlert.innerText = msg;
+      toastAlert.classList.add('show');
+      setTimeout(() => toastAlert.classList.remove('show'), 1800);
+    }
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = usernameField.value.trim();
+      const pass = passwordField.value;
+
+      if(user === 'Gnokz' && pass === 'spc8808'){
+        errorMsgDiv.style.display = 'none';
+        displayUsernameSpan.innerText = user;
+        loginForm.style.display = 'none';
+        mainApp.style.display = 'block';
+        usernameField.value = '';
+        passwordField.value = '';
+      } else {
+        errorMsgDiv.innerHTML = `<i class="fas fa-circle-exclamation"></i> Invalid Owner Credentials`;
+        errorMsgDiv.style.display = 'block';
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      mainApp.style.display = 'none';
+      loginForm.style.display = 'flex';
+    });
+
     function buildCategories(){
       const categoriesList = [
-        { id: 'presets', label: 'PRESETS', icon: 'fa-sliders-h', sub: 'motion presets' },
-        { id: 'links', label: 'LINKS', icon: 'fa-link', sub: 'curated resources' },
-        { id: 'prompts', label: 'PROMPTS', icon: 'fa-comment-dots', sub: 'AI workflows' },
-        { id: 'otherweb', label: 'OTHER WEB', icon: 'fa-globe', sub: 'external panels' },
-        { id: 'accounts', label: 'ACCOUNTS', icon: 'fa-id-card', sub: 'coming soon', disabled: true }
+        { id: 'presets', label: 'PRESETS', icon: 'fa-sliders', sub: 'motion pack' },
+        { id: 'links', label: 'LINKS', icon: 'fa-link', sub: 'resources' },
+        { id: 'prompts', label: 'PROMPTS', icon: 'fa-comment-dots', sub: 'AI tools' },
+        { id: 'otherweb', label: 'OTHER WEB', icon: 'fa-globe', sub: 'external' },
+        { id: 'accounts', label: 'ACCOUNTS', icon: 'fa-id-card', sub: 'soon', disabled: true }
       ];
-      categoryGrid.innerHTML = '';
+      
+      const grid = document.getElementById('categoryGrid');
+      grid.innerHTML = '';
+      
       categoriesList.forEach(cat => {
         const tile = document.createElement('div');
         tile.className = `category-tile ${cat.disabled ? 'disabled-tile' : ''}`;
-        if(!cat.disabled){
+        if(!cat.disabled) {
           tile.addEventListener('click', () => openModal(cat.id));
         }
         tile.innerHTML = `
           <div class="tile-icon"><i class="fas ${cat.icon}"></i></div>
           <div>
             <div class="tile-text">${cat.label}</div>
-            <div class="tile-sub"><i class="fas fa-${cat.disabled ? 'ban' : 'hand-pointer'}"></i> ${cat.sub}</div>
+            <div class="tile-sub">${cat.sub}</div>
           </div>
         `;
-        categoryGrid.appendChild(tile);
+        grid.appendChild(tile);
       });
     }
 
-    // Open modal with 5 cards
-    function openModal(categoryId){
-      const data = categoriesData[categoryId];
+    function openModal(id) {
+      const data = categoriesData[id];
       if(!data) return;
-      modalTitle.innerHTML = `<i class="fas ${data.icon}"></i> ${data.name} <span style="font-size:0.8rem;">· 5 options</span>`;
-      // generate 5 cards
+      modalTitle.innerHTML = `<i class="fas ${data.icon}"></i> ${data.name}`;
       modalCardsContainer.innerHTML = '';
+      
       data.cards.forEach(card => {
         const cardEl = document.createElement('div');
         cardEl.className = 'option-card';
         cardEl.innerHTML = `
-          <div class="card-icon"><i class="fas ${card.icon}"></i></div>
-          <div class="card-title">${card.title}</div>
-          <div class="card-desc">${card.desc}</div>
-          <button class="card-action" data-action="${card.title}">${card.actionLabel} <i class="fas fa-arrow-right"></i></button>
+          <div class="card-main-info">
+            <div class="card-icon"><i class="fas ${card.icon}"></i></div>
+            <div>
+              <div class="card-title">${card.title}</div>
+              <div class="card-desc">${card.desc}</div>
+            </div>
+          </div>
+          <button class="card-action">${card.actionLabel}</button>
         `;
-        modalCardsContainer.appendChild(cardEl);
-      });
-      // add listeners to action buttons (simple toast feedback)
-      const actionBtns = modalCardsContainer.querySelectorAll('.card-action');
-      actionBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const actionName = btn.getAttribute('data-action') || 'item';
-          // temporary glass alert
-          const toast = document.createElement('div');
-          toast.innerText = `Selected: ${actionName}`;
-          toast.style.position = 'fixed';
-          toast.style.bottom = '20px';
-          toast.style.left = '50%';
-          toast.style.transform = 'translateX(-50%)';
-          toast.style.background = 'rgba(0,0,0,0.7)';
-          toast.style.backdropFilter = 'blur(12px)';
-          toast.style.padding = '8px 20px';
-          toast.style.borderRadius = '40px';
-          toast.style.color = 'white';
-          toast.style.zIndex = '2000';
-          toast.style.fontSize = '0.8rem';
-          toast.style.border = '1px solid rgba(255,255,255,0.2)';
-          document.body.appendChild(toast);
-          setTimeout(()=> toast.remove(), 1500);
+        cardEl.querySelector('.card-action').addEventListener('click', () => {
+          showToast(`Triggered: ${card.title}`);
         });
+        modalCardsContainer.appendChild(cardEl);
       });
       modalOverlay.classList.add('active');
     }
 
-    function closeModal(){
-      modalOverlay.classList.remove('active');
-    }
+    closeModalBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
+    modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) modalOverlay.classList.remove('active'); });
 
-    // event binding
-    continueBtn.addEventListener('click', (e) => { e.preventDefault(); attemptLogin(); });
-    const handleEnter = (e) => { if(e.key === 'Enter') attemptLogin(); };
-    usernameField.addEventListener('keypress', handleEnter);
-    passwordField.addEventListener('keypress', handleEnter);
     togglePass.addEventListener('click', () => {
-      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordField.setAttribute('type', type);
-      togglePass.classList.toggle('fa-eye-slash');
-      togglePass.classList.toggle('fa-eye');
+      const isPass = passwordField.type === 'password';
+      passwordField.type = isPass ? 'text' : 'password';
+      togglePass.classList.toggle('fa-eye-slash', !isPass);
+      togglePass.classList.toggle('fa-eye', isPass);
     });
-    logoutBtn.addEventListener('click', (e) => { e.preventDefault(); logout(); });
-    closeModalBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
-    function clearErrorOnInput(){ if(errorMsgDiv.style.display === 'block') clearError(); }
-    usernameField.addEventListener('input', clearErrorOnInput);
-    passwordField.addEventListener('input', clearErrorOnInput);
 
-    // init
-    loginContainer.style.display = 'flex';
-    mainApp.style.display = 'none';
     buildCategories();
-    usernameField.focus();
   })();
 </script>
 </body>
 </html>
+
 ```
