@@ -514,15 +514,18 @@
     const closeModalBtn = document.getElementById('closeModalBtn');
     const toastAlert = document.getElementById('toastAlert');
 
+    // MGA KATEGORYA (Dito mo papalitan ang 'ILAGAY_ANG_DIRECT_LINK_DITO')
+    // Tip: Gamitin ang format na https://drive.google.com/uc?export=download&id=YOUR_FILE_ID para mag-auto download agad ang XML file!
     const categoriesData = {
       presets: {
         name: 'PRESETS', icon: 'fa-sliders',
         cards: [
-          { title: 'Shake Effects', desc: 'Dynamic camera shake', actionLabel: 'GET', icon: 'fa-wave-square' },
-          { title: 'Glitch Burst', desc: 'Retro transitions', actionLabel: 'GET', icon: 'fa-bolt' },
-          { title: 'Neon Pulse', desc: 'Vibrant intensity', actionLabel: 'GET', icon: 'fa-bolt-lightning' },
-          { title: 'Cinematic Fade', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-film' },
-          { title: 'Glass Morph', desc: 'Liquid motion', actionLabel: 'GET', icon: 'fa-gem' }
+          { title: 'Shake Effects', desc: 'Dynamic camera shake', actionLabel: 'GET', icon: 'fa-wave-square', url: 'https://drive.google.com/file/d/114g6hOE_spF_2PyJ6QqZQUURuloAYa1j/view?usp=drivesdk 
+' },
+          { title: 'Glitch Burst', desc: 'Retro transitions', actionLabel: 'GET', icon: 'fa-bolt', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_2' },
+          { title: 'Neon Pulse', desc: 'Vibrant intensity', actionLabel: 'GET', icon: 'fa-bolt-lightning', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_3' },
+          { title: 'Cinematic Fade', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-film', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_4' },
+          { title: 'Glass Morph', desc: 'Liquid motion', actionLabel: 'GET', icon: 'fa-gem', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_5' }
         ]
       },
       links: {
@@ -634,9 +637,21 @@
           </div>
           <button class="card-action">${card.actionLabel}</button>
         `;
+        
+        // AUTOMATIC DOWNLOAD LOGIC FOR PRESETS
         cardEl.querySelector('.card-action').addEventListener('click', () => {
-          showToast(`Triggered: ${card.title}`);
+          if (id === 'presets') {
+            if (card.url && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_1' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_2' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_3' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_4' && card.url !== 'ILAGAY_ANG_DIRECT_LINK_DITO_5') {
+              showToast(`Downloading: ${card.title}...`);
+              window.open(card.url, '_blank');
+            } else {
+              showToast(`Wala pang link ang ${card.title}`);
+            }
+          } else {
+            showToast(`Triggered: ${card.title}`);
+          }
         });
+        
         modalCardsContainer.appendChild(cardEl);
       });
       modalOverlay.classList.add('active');
