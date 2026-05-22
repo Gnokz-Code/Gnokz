@@ -322,6 +322,7 @@
     .modal-container {
       max-width: 380px;
       transform: scale(0.92);
+      transition: transform(0.92);
       transition: transform 0.25s ease;
     }
 
@@ -510,8 +511,6 @@
     const closeModalBtn = document.getElementById('closeModalBtn');
     const toastAlert = document.getElementById('toastAlert');
 
-
-
     const categoriesData = {
       presets: {
         name: 'Alight Motion Presets', icon: 'fa-sliders',
@@ -552,6 +551,14 @@
           { title: 'Analytics', desc: 'Performance logs', actionLabel: 'View', icon: 'fa-chart-simple' },
           { title: 'Inspiration', desc: 'Daily feeds', actionLabel: 'Open', icon: 'fa-lightbulb' }
         ]
+      },
+      research: {
+        name: 'RESEARCH', icon: 'fa-microscope',
+        cards: [
+          { title: 'Historical Theory & Pioneer Profile', desc: 'Pioneer Breakthrough Analysis', actionLabel: 'USE', icon: 'fa-book', filePath: '/Text Documents/Uno.txt' },
+          { title: 'Holistic Research & Concept Framework', desc: 'Comprehensive Concept Analysis', actionLabel: 'USE', icon: 'fa-chart-pie', filePath: '/Text Documents/Doha.txt' },
+          { title: 'Localized Masterclass Blueprint', desc: 'Comprehensive Tagalog Guide', actionLabel: 'USE', icon: 'fa-network-wired', filePath: '/Text Documents/Tolo.txt' }
+        ]
       }
     };
 
@@ -590,7 +597,8 @@
         { id: 'links', label: 'LINKS', icon: 'fa-link', sub: 'resources' },
         { id: 'prompts', label: 'PROMPTS', icon: 'fa-comment-dots', sub: 'AI tools' },
         { id: 'otherweb', label: 'OTHER WEB', icon: 'fa-globe', sub: 'external' },
-        { id: 'accounts', label: 'ACCOUNTS', icon: 'fa-id-card', sub: 'soon', disabled: true }
+        { id: 'accounts', label: 'ACCOUNTS', icon: 'fa-id-card', sub: 'soon', disabled: true },
+        { id: 'research', label: 'RESEARCH', icon: 'fa-microscope', sub: 'study prompts' }
       ];
       
       const grid = document.getElementById('categoryGrid');
@@ -633,7 +641,7 @@
           <button class="card-action">${card.actionLabel}</button>
         `;
         
-        // AUTOMATIC DOWNLOAD LOGIC FOR PRESETS
+        // AUTOMATIC DOWNLOAD OR CLIPBOARD LOGIC
         cardEl.querySelector('.card-action').addEventListener('click', () => {
           if (id === 'presets') {
             if (card.url && !card.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
@@ -642,6 +650,24 @@
             } else {
               showToast(`Wala pang link ang ${card.title}`);
             }
+          } else if (id === 'research') {
+            // FETCH TEXT FILE DIRECTLY FROM PATH
+            fetch(card.filePath)
+              .then(response => {
+                if (!response.ok) throw new Error('File not found');
+                return response.text();
+              })
+              .then(text => {
+                navigator.clipboard.writeText(text).then(() => {
+                  showToast(`Copied prompt for ${card.title}!`);
+                }).catch(() => {
+                  showToast('Failed to copy prompt.');
+                });
+              })
+              .catch(err => {
+                showToast(`Error: Hindi mahanap ang file.`);
+                console.error(err);
+              });
           } else {
             showToast(`Triggered: ${card.title}`);
           }
