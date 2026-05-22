@@ -359,6 +359,12 @@
       overflow-y: auto;
     }
 
+    .card-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
     .option-card {
       background: rgba(255, 255, 255, 0.02);
       border-radius: 0.6rem;
@@ -401,6 +407,22 @@
       font-weight: 500;
       font-size: 0.7rem;
       cursor: pointer;
+    }
+
+    /* NESTED EXPANDABLE STYLE */
+    .sub-versions-container {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 0.4rem 0 0.4rem 1rem;
+      border-left: 2px solid rgba(168, 85, 247, 0.3);
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .toggle-arrow {
+      transition: transform 0.2s ease;
+      color: rgba(255, 255, 255, 0.4);
     }
 
     /* FLOATING TOAST UPGRADE */
@@ -515,7 +537,32 @@
         name: 'Alight Motion Presets', icon: 'fa-sliders',
         cards: [
           { title: 'All Layer Effects', desc: '9:16 • Jedug Jedug', actionLabel: 'GET', icon: 'fa-layer-group', url: 'https://drive.google.com/file/d/1SiXYq9_Ep_q1SaGDE3YJLen-ejYUuEgr/view?usp=drivesdk' },
-          { title: 'Text Animation', desc: 'Subtitle • Speaking Scenes', actionLabel: 'GET', icon: 'fa-font', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_2' },
+          { 
+            title: 'Text Animation', 
+            desc: 'Tap to view 3 versions', 
+            icon: 'fa-font',
+            versions: [
+              { title: 'TA Version 1', desc: 'Kinetic slide text animation', url: 'https://drive.google.com/file/d/1AC29gQU4Lob5MXc6bk3P_SruQdjOvcjg/view?usp=drivesdk' },
+              { title: 'TA Version 2', desc: 'Smooth fade glow text layout', url: 'https://drive.google.com/file/d/1FpEjNUBEWxHbu9CQ4kDq7WzeDohql028/view?usp=drivesdk' },
+              { title: 'TA Version 3', desc: 'Premium bounce and blur effect', url: 'https://drive.google.com/file/d/14dEXCzw7cD1PRk1Ynr5-N5Z18RrDkwiZ/view?usp=drivesdk' }
+            ]
+          },
+          { title: 'Simple Shake Effects', desc: 'Clean standard motion shakes', actionLabel: 'GET', icon: 'fa-wave-square', url: 'https://drive.google.com/file/d/1_8FC6H_ibw8iFcAc3Y0WajOQs1kTq5f7/view?usp=drivesdk' },
+          { title: 'Advance Shake Effects', desc: 'Heavy cinematic shake nodes', actionLabel: 'GET', icon: 'fa-burst', url: 'https://drive.google.com/file/d/1o28oR1Z0K6iOihXJKxBMQi2q5oOkOKah/view?usp=drivesdk' },
+          { title: 'Random Effects', desc: 'Assorted custom layout filters', actionLabel: 'GET', icon: 'fa-shuffle', url: 'https://drive.google.com/file/d/1Fqn-rurtS-q25sYkHzcnU4wLdM--Ti8y/view?usp=drivesdk' },
+          { title: 'Aura Effects', desc: 'Vibrant edge glowing design layers', actionLabel: 'GET', icon: 'fa-sun', url: 'https://drive.google.com/file/d/1m8DWzTU-cQTJ3V_N-7ozu63iX3oYjLdE/view?usp=drivesdk' },
+          { title: 'Preset Packs', desc: 'Complete premium asset packages', actionLabel: 'GET', icon: 'fa-box-open', url: 'https://drive.google.com/file/d/193aqwFE9K4Am4QSczbZ6zZo4PUdh39GT/view?usp=drivesdk' },
+          { title: 'Slide Packs', desc: 'Seamless directional sliding tiles', actionLabel: 'GET', icon: 'fa-arrows-left-right', url: 'https://drive.google.com/file/d/1C12f02oHWlq1mCPgml-kdLkV8mBS9ua4/view?usp=drivesdk' },
+          { title: 'Watermark', desc: 'Signature brand safety configurations', actionLabel: 'GET', icon: 'fa-copyright', url: 'https://drive.google.com/file/d/1EAXN-VA2Y8bJNCskdS4LdYQO8TYybCWK/view?usp=drivesdk' },
+          { 
+            title: 'Color Correction Effects', 
+            desc: 'Tap to view 2 versions', 
+            icon: 'fa-droplet',
+            versions: [
+              { title: 'CC Version 1', desc: 'Cinematic grading profile 1', url: 'https://drive.google.com/file/d/1Dgox4tG2Vu81sPsJPviBxLmu6ztA8dVL/view?usp=drivesdk' },
+              { title: 'CC Version 2', desc: 'Vibrant grading profile 2', url: 'https://drive.google.com/file/d/1Nrxu2EC5Edt8TzKDs-PrcwjMDx6WCVfB/view?usp=drivesdk' }
+            ]
+          },
           { title: 'Outro', desc: 'End of edits', actionLabel: 'GET', icon: 'fa-clapperboard', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_3' },
           { title: 'Transation', desc: 'Smooth transitions', actionLabel: 'GET', icon: 'fa-shuffle', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_4' },
           { title: 'AE like', desc: 'Premium Vibe', actionLabel: 'GET', icon: 'fa-wand-magic-sparkles', url: 'ILAGAY_ANG_DIRECT_LINK_DITO_5' }
@@ -629,51 +676,111 @@
       modalCardsContainer.innerHTML = '';
       
       data.cards.forEach(card => {
+        const cardWrapper = document.createElement('div');
+        cardWrapper.className = 'card-wrapper';
+
         const cardEl = document.createElement('div');
         cardEl.className = 'option-card';
-        cardEl.innerHTML = `
-          <div class="card-main-info">
-            <div class="card-icon"><i class="fas ${card.icon}"></i></div>
-            <div>
-              <div class="card-title">${card.title}</div>
-              <div class="card-desc">${card.desc}</div>
+        
+        // CHECK IF IT HAS SUB-VERSIONS (Accordion Logic)
+        if (card.versions) {
+          cardEl.style.cursor = 'pointer';
+          cardEl.innerHTML = `
+            <div class="card-main-info">
+              <div class="card-icon"><i class="fas ${card.icon}"></i></div>
+              <div>
+                <div class="card-title">${card.title}</div>
+                <div class="card-desc">${card.desc}</div>
+              </div>
             </div>
-          </div>
-          <button class="card-action">${card.actionLabel}</button>
-        `;
-        
-        cardEl.querySelector('.card-action').addEventListener('click', () => {
-          if (id === 'presets') {
-            if (card.url && !card.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
-              showToast(`Downloading: ${card.title}...`);
-              window.open(card.url, '_blank');
-            } else {
-              showToast(`Wala pang link ang ${card.title}`);
-            }
-          } else if (id === 'research' || id === 'prompts') {
-            // AUTOMATIC COPY VIA FETCH FROM TARGET FILEPATH
-            fetch(card.filePath)
-              .then(response => {
-                if (!response.ok) throw new Error('File not found');
-                return response.text();
-              })
-              .then(text => {
-                navigator.clipboard.writeText(text).then(() => {
-                  showToast(`Copied prompt for ${card.title}!`);
-                }).catch(() => {
-                  showToast('Failed to copy prompt.');
+            <div style="padding-right: 0.2rem;"><i class="fas fa-chevron-down toggle-arrow"></i></div>
+          `;
+
+          const subContainer = document.createElement('div');
+          subContainer.className = 'sub-versions-container';
+
+          card.versions.forEach(ver => {
+            const verEl = document.createElement('div');
+            verEl.className = 'option-card';
+            verEl.style.background = 'rgba(255, 255, 255, 0.01)';
+            verEl.innerHTML = `
+              <div class="card-main-info">
+                <div class="card-icon" style="font-size: 0.75rem; opacity: 0.7;"><i class="fas fa-circle-dot"></i></div>
+                <div>
+                  <div class="card-title" style="font-size: 0.75rem;">${ver.title}</div>
+                  <div class="card-desc" style="font-size: 0.65rem;">${ver.desc}</div>
+                </div>
+              </div>
+              <button class="card-action">GET</button>
+            `;
+
+            verEl.querySelector('.card-action').addEventListener('click', (e) => {
+              e.stopPropagation(); // Prevents collapsing the accordion on button click
+              if (ver.url && !ver.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
+                showToast(`Downloading: ${ver.title}...`);
+                window.open(ver.url, '_blank');
+              } else {
+                showToast(`Wala pang link ang ${ver.title}`);
+              }
+            });
+
+            subContainer.appendChild(verEl);
+          });
+
+          cardEl.addEventListener('click', () => {
+            const isHidden = subContainer.style.display !== 'flex';
+            subContainer.style.display = isHidden ? 'flex' : 'none';
+            cardEl.querySelector('.toggle-arrow').style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+          });
+
+          cardWrapper.appendChild(cardEl);
+          cardWrapper.appendChild(subContainer);
+          modalCardsContainer.appendChild(cardWrapper);
+
+        } else {
+          // STANDARD CARD LOGIC
+          cardEl.innerHTML = `
+            <div class="card-main-info">
+              <div class="card-icon"><i class="fas ${card.icon}"></i></div>
+              <div>
+                <div class="card-title">${card.title}</div>
+                <div class="card-desc">${card.desc}</div>
+              </div>
+            </div>
+            <button class="card-action">${card.actionLabel || 'GET'}</button>
+          `;
+          
+          cardEl.querySelector('.card-action').addEventListener('click', () => {
+            if (id === 'presets') {
+              if (card.url && !card.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
+                showToast(`Downloading: ${card.title}...`);
+                window.open(card.url, '_blank');
+              } else {
+                showToast(`Wala pang link ang ${card.title}`);
+              }
+            } else if (id === 'research' || id === 'prompts') {
+              fetch(card.filePath)
+                .then(response => {
+                  if (!response.ok) throw new Error('File not found');
+                  return response.text();
+                })
+                .then(text => {
+                  navigator.clipboard.writeText(text).then(() => {
+                    showToast(`Copied prompt for ${card.title}!`);
+                  }).catch(() => {
+                    showToast('Failed to copy prompt.');
+                  });
+                })
+                .catch(err => {
+                  showToast(`Error: Hindi mahanap ang file.`);
+                  console.error(err);
                 });
-              })
-              .catch(err => {
-                showToast(`Error: Hindi mahanap ang file.`);
-                console.error(err);
-              });
-          } else {
-            showToast(`Triggered: ${card.title}`);
-          }
-        });
-        
-        modalCardsContainer.appendChild(cardEl);
+            } else {
+              showToast(`Triggered: ${card.title}`);
+            }
+          });
+          modalCardsContainer.appendChild(cardEl);
+        }
       });
       modalOverlay.classList.add('active');
     }
