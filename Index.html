@@ -322,7 +322,6 @@
     .modal-container {
       max-width: 380px;
       transform: scale(0.92);
-      transition: transform(0.92);
       transition: transform 0.25s ease;
     }
 
@@ -535,11 +534,13 @@
       prompts: {
         name: 'PROMPTS', icon: 'fa-comment-dots',
         cards: [
-          { title: 'Storyteller', desc: 'Narrative arcs', actionLabel: 'Use', icon: 'fa-robot' },
-          { title: 'Code Genius', desc: 'Clean script', actionLabel: 'Use', icon: 'fa-terminal' },
-          { title: 'UI Critic', desc: 'UX review', actionLabel: 'Use', icon: 'fa-pen-ruler' },
-          { title: 'Copy Pro', desc: 'Marketing text', actionLabel: 'Use', icon: 'fa-feather' },
-          { title: 'Analyst', desc: 'Data extraction', actionLabel: 'Use', icon: 'fa-chart-line' }
+          { title: 'Enhance Anime', desc: 'Anime style detailing framework', actionLabel: 'Use', icon: 'fa-wand-magic-sparkles', filePath: '/Text Documents/Enhance_Anime.txt' },
+          { title: 'Enhance Realistic', desc: 'Hyper-realistic engine adjustment', actionLabel: 'Use', icon: 'fa-camera', filePath: '/Text Documents/Enhance_Realistic.txt' },
+          { title: 'Turn to mangga', desc: 'Manga and comic-style art translation', actionLabel: 'Use', icon: 'fa-book-open', filePath: '/Text Documents/Turn_To_Mangga.txt' },
+          { title: 'Analyze & Clone', desc: 'Structure decoding and cloning', actionLabel: 'Use', icon: 'fa-clone', filePath: '/Text Documents/Analyze_Clone.txt' },
+          { title: 'Glowing Poster', desc: 'Vibrant neon and cinematic lighting', actionLabel: 'Use', icon: 'fa-bolt', filePath: '/Text Documents/Glowing_Poster.txt' },
+          { title: 'Reverse Engineering', desc: 'Reverse image formatting & parameters', actionLabel: 'Use', icon: 'fa-gears', filePath: '/Text Documents/Reverse_Engineering.txt' },
+          { title: 'RE - UI•UX', desc: 'Ultra quality glassmorphism & layouts', actionLabel: 'Use', icon: 'fa-bezier-curve', filePath: '/Text Documents/RE_UI_UX.txt' }
         ]
       },
       otherweb: {
@@ -555,9 +556,9 @@
       research: {
         name: 'RESEARCH', icon: 'fa-microscope',
         cards: [
-          { title: 'Historical Theory & Pioneer Profile', desc: 'Pioneer Breakthrough Analysis', actionLabel: 'USE', icon: 'fa-book', filePath: '/Text Documents/Uno.txt' },
-          { title: 'Holistic Research & Concept Framework', desc: 'Comprehensive Concept Analysis', actionLabel: 'USE', icon: 'fa-chart-pie', filePath: '/Text Documents/Doha.txt' },
-          { title: 'Localized Masterclass Blueprint', desc: 'Comprehensive Tagalog Guide', actionLabel: 'USE', icon: 'fa-network-wired', filePath: '/Text Documents/Tolo.txt' }
+          { title: 'Historical Theory & Pioneer Profile', desc: 'Pioneer Breakthrough Analysis', actionLabel: 'USE', icon: 'fa-book', filePath: '/Research Txt Doc/Uno.txt' },
+          { title: 'Holistic Research & Concept Framework', desc: 'Comprehensive Concept Analysis', actionLabel: 'USE', icon: 'fa-chart-pie', filePath: '/Research Txt Doc/Doha.txt' },
+          { title: 'Localized Masterclass Blueprint', desc: 'Comprehensive Tagalog Guide', actionLabel: 'USE', icon: 'fa-network-wired', filePath: '/Research Txt Doc/Tolo.txt' }
         ]
       }
     };
@@ -641,7 +642,6 @@
           <button class="card-action">${card.actionLabel}</button>
         `;
         
-        // AUTOMATIC DOWNLOAD OR CLIPBOARD LOGIC
         cardEl.querySelector('.card-action').addEventListener('click', () => {
           if (id === 'presets') {
             if (card.url && !card.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
@@ -650,8 +650,8 @@
             } else {
               showToast(`Wala pang link ang ${card.title}`);
             }
-          } else if (id === 'research') {
-            // FETCH TEXT FILE DIRECTLY FROM PATH
+          } else if (id === 'research' || id === 'prompts') {
+            // AUTOMATIC COPY VIA FETCH FROM TARGET FILEPATH
             fetch(card.filePath)
               .then(response => {
                 if (!response.ok) throw new Error('File not found');
