@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Gnokz Info</title>
-  <link href="https://fonts.googleapis.com/css2=family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -33,7 +33,6 @@
       position: relative;
     }
 
-    /* Background Orbs focused around center */
     .bg-orb {
       position: absolute;
       border-radius: 50%;
@@ -57,7 +56,6 @@
       right: 15%;
     }
 
-    /* Compact Glass Panel Base */
     .glass-panel {
       background: var(--panel-bg);
       backdrop-filter: blur(20px);
@@ -70,7 +68,7 @@
       width: 100%;
     }
 
-    /* LOGIN CARD (Strictly Snug & Centered) */
+    /* LOGIN CARD */
     .login-card {
       max-width: 350px;
       padding: 2rem 1.5rem;
@@ -170,7 +168,7 @@
       color: rgba(255, 255, 255, 0.35);
     }
 
-    /* PRIVATE DASHBOARD (Centered App Canvas for Phone/iPad) */
+    /* PRIVATE DASHBOARD & VIEWPORTS */
     .private-hub {
       max-width: 420px;
       display: none;
@@ -239,7 +237,6 @@
       margin-top: 0.2rem;
     }
 
-    /* Balanced 2-Column Grid with No Empty Gaps */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -282,11 +279,6 @@
       color: rgba(255, 255, 255, 0.35);
     }
 
-    .disabled-tile {
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
-
     .private-footer {
       padding: 0.85rem;
       background: rgba(0, 0, 0, 0.15);
@@ -297,7 +289,126 @@
       border-bottom-right-radius: 1.25rem;
     }
 
-    /* ALWAYS CENTERED MODAL FOR MOBILE & TABLET */
+    /* FULLSCREEN PORTFOLIO STYLES */
+    .portfolio-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .back-hub-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .portfolio-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.8rem 1rem;
+      overflow-x: auto;
+    }
+
+    .tab-trigger {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-trigger.active {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .portfolio-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      padding: 1rem;
+      max-height: 62vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* VIDEO PREVIEW CARD COMPONENT */
+    .preview-card {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-card .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ASPECT RATIO VIDEO CONTAINER */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #000000;
+      border-radius: 0.6rem;
+      overflow: hidden;
+      transition: aspect-ratio 0.3s ease;
+    }
+
+    .video-wrapper.ratio-expanded {
+      aspect-ratio: auto;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+    }
+
+    .video-wrapper:not(.ratio-expanded) video {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .expand-toggle-btn {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 0.4rem;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* MODAL OVERLAY */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -401,7 +512,7 @@
     .card-action {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.3rem 0.6rem;
+      padding: 0.3rem 0.66rem;
       border-radius: 0.4rem;
       color: #ffffff;
       font-weight: 500;
@@ -409,7 +520,6 @@
       cursor: pointer;
     }
 
-    /* NESTED EXPANDABLE STYLE */
     .sub-versions-container {
       display: none;
       flex-direction: column;
@@ -425,7 +535,6 @@
       color: rgba(255, 255, 255, 0.4);
     }
 
-    /* FLOATING TOAST UPGRADE */
     .toast-alert {
       position: fixed;
       bottom: 2rem;
@@ -503,6 +612,24 @@
   </div>
 </div>
 
+<div id="portfolioApp" class="glass-panel private-hub">
+  <div class="portfolio-header">
+    <button type="button" class="back-hub-btn" id="backHubBtn"><i class="fas fa-arrow-left"></i> Back</button>
+    <h2 style="color: #ffffff; font-size: 1.05rem; font-weight: 700;"><i class="fas fa-briefcase"></i> My Portfolio</h2>
+  </div>
+  
+  <div class="portfolio-tabs">
+    <button type="button" class="tab-trigger active" data-filter="motion">MOTION DESIGN</button>
+    <button type="button" class="tab-trigger" data-filter="edits">MULTI-STYLE EDITS</button>
+  </div>
+
+  <div class="portfolio-feed" id="portfolioFeedContainer"></div>
+
+  <div class="private-footer">
+    <p><i class="fas fa-star"></i> Curated Works & Showcases</p>
+  </div>
+</div>
+
 <div id="modalOverlay" class="modal-overlay">
   <div class="glass-panel modal-container">
     <div class="modal-header">
@@ -519,6 +646,10 @@
   (function(){
     const loginForm = document.getElementById('loginForm');
     const mainApp = document.getElementById('mainApp');
+    const portfolioApp = document.getElementById('portfolioApp');
+    const portfolioFeedContainer = document.getElementById('portfolioFeedContainer');
+    const backHubBtn = document.getElementById('backHubBtn');
+    
     const usernameField = document.getElementById('usernameInput');
     const passwordField = document.getElementById('passwordInput');
     const errorMsgDiv = document.getElementById('errorMsg');
@@ -531,6 +662,8 @@
     const modalCardsContainer = document.getElementById('modalCardsContainer');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const toastAlert = document.getElementById('toastAlert');
+
+    let videoIntersectionObserver = null;
 
     const categoriesData = {
       presets: {
@@ -610,18 +743,39 @@
       }
     };
 
+    const portfolioRepo = [
+      { type: 'motion', videoSrc: '' },
+      { type: 'motion', videoSrc: '' },
+      { type: 'motion', videoSrc: '' },
+      { type: 'motion', videoSrc: '' },
+      { type: 'motion', videoSrc: '' },
+      { type: 'edits', videoSrc: '' },
+      { type: 'edits', videoSrc: '' },
+      { type: 'edits', videoSrc: '' },
+      { type: 'edits', videoSrc: '' },
+      { type: 'edits', videoSrc: '' }
+    ];
+
     function showToast(msg) {
       toastAlert.innerText = msg;
       toastAlert.classList.add('show');
       setTimeout(() => toastAlert.classList.remove('show'), 1800);
     }
 
-    loginForm.addEventListener('submit', (e) => {
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const user = usernameField.value.trim();
       const pass = passwordField.value;
+      const hashedInput = await sha256(pass);
 
-      if(user === 'Gnokz' && pass === 'spc8808'){
+      if(user === 'Gnokz' && hashedInput === '4e43018e9d9c90ee405008cb83cd63f3efd6d6c8c6f06121a80bff5a2b4069bd'){
         errorMsgDiv.style.display = 'none';
         displayUsernameSpan.innerText = user;
         loginForm.style.display = 'none';
@@ -639,13 +793,101 @@
       loginForm.style.display = 'flex';
     });
 
+    backHubBtn.addEventListener('click', () => {
+      if (videoIntersectionObserver) {
+        videoIntersectionObserver.disconnect();
+      }
+      portfolioApp.style.display = 'none';
+      mainApp.style.display = 'block';
+    });
+
+    document.querySelectorAll('.tab-trigger').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        buildPortfolioFeed(e.target.getAttribute('data-filter'));
+      });
+    });
+
+    function initVideoAutoplayObserver() {
+      if (videoIntersectionObserver) {
+        videoIntersectionObserver.disconnect();
+      }
+
+      const observerOptions = {
+        root: portfolioFeedContainer,
+        threshold: 0.6
+      };
+
+      videoIntersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            if (video.src) {
+              video.play().catch(() => {});
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, observerOptions);
+
+      const videos = portfolioFeedContainer.querySelectorAll('video');
+      videos.forEach(v => videoIntersectionObserver.observe(v));
+    }
+
+    function buildPortfolioFeed(filterStyle) {
+      portfolioFeedContainer.innerHTML = '';
+      let cardCounter = 1;
+
+      portfolioRepo.forEach(project => {
+        if (project.type !== filterStyle) return;
+
+        const card = document.createElement('div');
+        card.className = 'preview-card';
+        
+        // REMOVED 'muted' ATTRIBUTE FOR UNMUTED AUDIO PLAYBACK
+        card.innerHTML = `
+          <div class="card-title">Preview ${cardCounter}</div>
+          <div class="video-wrapper">
+            <button type="button" class="expand-toggle-btn">
+              <i class="fas fa-expand"></i> <span>Expand Ratio</span>
+            </button>
+            <video loop playsinline src="${project.videoSrc}"></video>
+          </div>
+        `;
+
+        const videoWrapper = card.querySelector('.video-wrapper');
+        const expandBtn = card.querySelector('.expand-toggle-btn');
+        const expandIcon = expandBtn.querySelector('i');
+        const expandText = expandBtn.querySelector('span');
+
+        expandBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isExpanded = videoWrapper.classList.toggle('ratio-expanded');
+          if (isExpanded) {
+            expandIcon.className = 'fas fa-compress';
+            expandText.innerText = 'Close Ratio';
+          } else {
+            expandIcon.className = 'fas fa-expand';
+            expandText.innerText = 'Expand Ratio';
+          }
+        });
+
+        portfolioFeedContainer.appendChild(card);
+        cardCounter++;
+      });
+
+      initVideoAutoplayObserver();
+    }
+
     function buildCategories(){
       const categoriesList = [
         { id: 'presets', label: 'PRESETS', icon: 'fa-sliders', sub: 'motion pack' },
         { id: 'links', label: 'LINKS', icon: 'fa-link', sub: 'resources' },
         { id: 'prompts', label: 'PROMPTS', icon: 'fa-comment-dots', sub: 'AI tools' },
         { id: 'otherweb', label: 'OTHER WEB', icon: 'fa-globe', sub: 'external' },
-        { id: 'accounts', label: 'ACCOUNTS', icon: 'fa-id-card', sub: 'soon', disabled: true },
+        { id: 'portfolio', label: 'MY PORTFOLIO', icon: 'fa-briefcase', sub: 'client preview' },
         { id: 'research', label: 'RESEARCH', icon: 'fa-microscope', sub: 'study prompts' }
       ];
       
@@ -654,10 +896,21 @@
       
       categoriesList.forEach(cat => {
         const tile = document.createElement('div');
-        tile.className = `category-tile ${cat.disabled ? 'disabled-tile' : ''}`;
-        if(!cat.disabled) {
-          tile.addEventListener('click', () => openModal(cat.id));
-        }
+        tile.className = `category-tile`;
+        
+        tile.addEventListener('click', () => {
+          if (cat.id === 'portfolio') {
+            mainApp.style.display = 'none';
+            portfolioApp.style.display = 'block';
+            document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+            const initialTab = document.querySelector('.tab-trigger[data-filter="motion"]');
+            if (initialTab) initialTab.classList.add('active');
+            buildPortfolioFeed('motion');
+          } else {
+            openModal(cat.id);
+          }
+        });
+
         tile.innerHTML = `
           <div class="tile-icon"><i class="fas ${cat.icon}"></i></div>
           <div>
@@ -682,7 +935,6 @@
         const cardEl = document.createElement('div');
         cardEl.className = 'option-card';
         
-        // CHECK IF IT HAS SUB-VERSIONS (Accordion Logic)
         if (card.versions) {
           cardEl.style.cursor = 'pointer';
           cardEl.innerHTML = `
@@ -715,7 +967,7 @@
             `;
 
             verEl.querySelector('.card-action').addEventListener('click', (e) => {
-              e.stopPropagation(); // Prevents collapsing the accordion on button click
+              e.stopPropagation();
               if (ver.url && !ver.url.includes('ILAGAY_ANG_DIRECT_LINK_DITO')) {
                 showToast(`Downloading: ${ver.title}...`);
                 window.open(ver.url, '_blank');
@@ -738,7 +990,6 @@
           modalCardsContainer.appendChild(cardWrapper);
 
         } else {
-          // STANDARD CARD LOGIC
           cardEl.innerHTML = `
             <div class="card-main-info">
               <div class="card-icon"><i class="fas ${card.icon}"></i></div>
